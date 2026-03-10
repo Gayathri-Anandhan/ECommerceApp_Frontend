@@ -82,7 +82,7 @@ export default function Login() {
                 <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" type="password" name="password" value={formData.password} onChange={handleChange} /><br /><br />
                 <label className="block text-sm font-medium text-neutral-700 mb-2">Role:</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" placeholder="admin / user" type="role" name="role" value={formData.role} onChange={handleChange} /><br /><br />
-                <button type="submit" className="bg-neutral-900 text-gray px-4 py-2 rounded-lg hover:bg-neutral-800 transition">Submit</button>
+                <button type="submit" className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition">Submit</button>
             </form>
 
         </div>

@@ -4,30 +4,6 @@ export default function Orders() {
 
     const [orders, setOrders] = useState([]);
 
-    // const totalAmount = orders.reduce((sum, item) => sum + item.price, 0);
-
-    // const handlePayment = async (item,index) => {
-
-    //     const response = await axios.post(
-    //         `http://localhost:8080/ECommerce/payment/create-order?amount=${totalAmount}`
-    //     );
-
-    //     const order = response.data;
-
-    //     const options = {
-    //         key: "rzp_test_SP6YnALebZmwaG",
-    //         amount: order.amount,
-    //         currency: order.currency,
-    //         order_id: order.id,
-
-    //         handler: function (response) {
-    //             console.log("Payment Success", response);
-    //         }
-    //     };
-
-    //     const rzp = new window.Razorpay(options);
-    //     rzp.open();
-    // };
     const handlePayment = async (item, index) => {
 
         const response = await axios.post(
@@ -59,18 +35,6 @@ export default function Orders() {
         const rzp = new window.Razorpay(options);
         rzp.open();
     };
-    // const item = {
-    //     id: product.id,
-    //     productName: product.productName,
-    //     price: product.price,
-    //     imageUrl: product.imageUrl,
-    //     status: "PENDING"
-    // };
-
-    // useEffect(() => {
-    //     const data = JSON.parse(localStorage.getItem("orders") || "[]");
-    //     setOrders(data);
-    // }, []);
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("orders") || "[]");
