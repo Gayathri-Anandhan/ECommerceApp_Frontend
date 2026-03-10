@@ -1,12 +1,12 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBagIcon, ShoppingCartIcon, CubeTransparentIcon, CreditCardIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import EarPods from "../assets/EarPods.jpg"
-import Product2 from "../assets/Product2.jpg"
-import Product3 from "../assets/Product3.jpg"
-import Product4 from "../assets/Product4.jpg"
-import Product5 from "../assets/Product5.jpg"
-import Product6 from "../assets/Product6.jpg"
+// import EarPods from "../assets/EarPods.jpg"
+// import Product2 from "../assets/Product2.jpg"
+// import Product3 from "../assets/Product3.jpg"
+// import Product4 from "../assets/Product4.jpg"
+// import Product5 from "../assets/Product5.jpg"
+// import Product6 from "../assets/Product6.jpg"
 import axios from "axios";
 import { useEffect } from "react"
 
