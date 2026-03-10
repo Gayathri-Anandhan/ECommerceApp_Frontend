@@ -48,6 +48,7 @@ export default function Login() {
             const url = "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/auth/sign-up";
             console.log("Submitting data:", formData);
             const response = await axios.post(url, formData);
+            alert("Registration successful!")
       
         } catch (error) {
             console.error("Sign-Up:", error);
