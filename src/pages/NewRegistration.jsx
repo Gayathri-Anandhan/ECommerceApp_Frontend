@@ -45,7 +45,7 @@ export default function Login() {
             //         return; // stop further execution
             //     }
 
-            const url = "http://localhost:8080/ECommerce/api/auth/sign-up";
+            const url = "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/auth/sign-up";
             console.log("Submitting data:", formData);
             const response = await axios.post(url, formData);
       

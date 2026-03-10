@@ -31,7 +31,7 @@ export default function Orders() {
     const handlePayment = async (item, index) => {
 
         const response = await axios.post(
-            `http://localhost:8080/ECommerce/payment/create-order?amount=${item.price}`
+            `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/payment/create-order?amount=${item.price}`
         );
 
         const order = response.data;

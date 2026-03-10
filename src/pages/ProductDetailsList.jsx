@@ -10,7 +10,7 @@ export default function Dashboard() {
     const handleDelete = async (id) => {
         if (window.confirm("Are u sure deleting this property?") === true) {
             try {
-                const resp = await axios.delete(`http://localhost:8080/ECommerce/api/products/deleteProducts?id=${id}`);
+                const resp = await axios.delete(`https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/deleteProducts?id=${id}`);
                 setRows((prev) =>
                     prev.filter((row) =>
                         row.id !== id));
@@ -47,7 +47,7 @@ export default function Dashboard() {
     });
 
     useEffect(() => {
-        axios.get("http://localhost:8080/ECommerce/api/products/allproducts").then((res) => setproperties(res.data)).catch((err) => console.log("Error fetching properties", err));
+        axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts").then((res) => setproperties(res.data)).catch((err) => console.log("Error fetching properties", err));
     }, []);
 
     return (

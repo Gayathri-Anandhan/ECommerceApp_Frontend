@@ -45,7 +45,7 @@ export default function ProductsPage() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8080/ECommerce/api/products/allproducts")
+        axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts")
             .then(res => {
                 console.log(res.data);
                 setProducts(res.data);

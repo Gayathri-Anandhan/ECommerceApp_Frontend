@@ -6,7 +6,7 @@ export default function Payments() {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/ECommerce/payment/all")
+    axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/payment/all")
       .then(res => {
         setPayments(res.data);
       });

@@ -52,7 +52,7 @@ export default function AddProduct() {
             }
 
             await axios.put(
-                `http://localhost:8080/ECommerce/api/products/updateProducts?id=${id}`,
+                `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/updateProducts?id=${id}`,
                 formDataObj
             );
 
@@ -69,7 +69,7 @@ export default function AddProduct() {
             formDataObj.append("file", file);
 
             await axios.post(
-                `http://localhost:8080/ECommerce/api/products/saveProduct`,
+                `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/saveProduct`,
                 formDataObj
             );
 
@@ -79,7 +79,7 @@ export default function AddProduct() {
 
     useEffect(() => {
         if (id) {
-            axios.get(`http://localhost:8080/ECommerce/api/products/viewproducts?id=${id}`)
+            axios.get(`https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/viewproducts?id=${id}`)
                 .then(res => {
                     console.log("API RESPONSE:", res.data);
 
