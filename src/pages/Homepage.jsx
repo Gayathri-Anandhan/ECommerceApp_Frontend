@@ -32,7 +32,7 @@ export default function HomePage() {
                             </div>
                         ) : (
                             <div className="flex gap-3">
-                                <Link
+                                {/* <Link
                                     to="/login"
                                     className="text-neutral-700 hover:text-black font-medium"
                                 >
@@ -43,7 +43,7 @@ export default function HomePage() {
                                     className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
                                 >
                                     Register
-                                </Link>
+                                </Link> */}
                             </div>
                         )}
                     </div>
