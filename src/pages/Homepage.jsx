@@ -38,17 +38,12 @@ export default function HomePage() {
                                 >
                                     Login
                                 </Link>
-                                {/* <Link
-                                    to="/register"
-                                    className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
-                                >
-                                    Register
-                                </Link> */}
+                               
                             </div>
                         )}
                     </div>
                 </div>
-                {/* <p className="text-neutral-500 mb-6">Slay With Anjay!</p><br></br> */}
+                <h6>Note: Admin Dashboard is only visible to Admin Users</h6>
                 <br></br>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:shadow-md transition">
