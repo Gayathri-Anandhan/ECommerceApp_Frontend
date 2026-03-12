@@ -16,6 +16,7 @@ export default function ProductsPage() {
     const name = localStorage.getItem("name");
     const [user, setUser] = useState(null);
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const addToCart = (product) => {
 
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -34,26 +35,22 @@ export default function ProductsPage() {
         alert("Product added to cart");
     };
 
-    // const products = [
-    //     { id: 1, productName: "EarPods", price: 1, imageUrl: EarPods },
-    //     { id: 2, productName: "Headphone", price: 1, imageUrl: Product2 },
-    //     { id: 3, productName: "Speaker", price: 1, imageUrl: Product3 },
-    //     { id: 4, productName: "Mouse", price: 1, imageUrl: Product4 },
-    //     { id: 5, productName: "Keyboard", price: 1, imageUrl: Product5 },
-    //     { id: 6, productName: "Smart Watch", price: 1, imageUrl: Product6 }
-    // ];
-
-
     useEffect(() => {
         axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts")
             .then(res => {
                 console.log(res.data);
                 setProducts(res.data);
+                setLoading(false);
             })
             .catch(err => {
                 console.error("Error loading products", err);
+                setLoading(false);
             });
     }, []);
+
+    if (loading) {
+        return <h2>Loading products...</h2>;
+    }
 
     return (
         <div className="bg-[#F5F1E8] min-h-screen p-10">
