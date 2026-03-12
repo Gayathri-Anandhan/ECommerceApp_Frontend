@@ -40,7 +40,7 @@ export default function Login() {
             navigate("/")
         } catch (error) {
             console.error("Login error:", error);
-            //     alert("Operation failed! Check console for details.");
+            alert("Operation failed! Check console for details.");
         }
     };
 
