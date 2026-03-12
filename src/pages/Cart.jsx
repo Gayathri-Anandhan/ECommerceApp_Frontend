@@ -58,7 +58,7 @@ export default function Cart() {
 
             ))}
             <h2>Total: {totalPrice}</h2>
-            <button onClick={handleCheckout}>
+            <button className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition" onClick={handleCheckout}>
                 Checkout
             </button>
             
