@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState} from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
@@ -8,12 +8,8 @@ export default function Login() {
     // const modeFromState = location.state?.mode;
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
-        // name: "",
-        // phoneno: "",
-        // email: "",
         username: "",
         password: "",
-        // role: ""
     });
 
     const navigate = useNavigate();

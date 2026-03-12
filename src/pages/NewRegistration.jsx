@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
-export default function Login() {
+export default function NewRegistration() {
     const location = useLocation();
     const { id } = useParams();
     // const modeFromState = location.state?.mode;
@@ -33,26 +33,17 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            //     //  EDIT MODE
-            //     if (id) {
-            //         await axios.put(
-            //             `https://realnest-backend-1.onrender.com/api/auth/updateUser?id=${id}`,
-            //             formData
-            //         );
-
-            //         alert("User updated successfully!");
-            //         navigate("/user-control");
-            //         return; // stop further execution
-            //     }
-
             const url = "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/auth/sign-up";
             console.log("Submitting data:", formData);
             const response = await axios.post(url, formData);
             alert("Registration successful!")
-      
+            navigate("/login");
         } catch (error) {
-            console.error("Sign-Up:", error);
-            //     alert("Operation failed! Check console for details.");
+            if (error.response) {
+                alert(error.response.data.message || "Login failed");
+            } else {
+                alert("Server not reachable");
+            }
         }
     };
     return (
@@ -81,7 +72,7 @@ export default function Login() {
                 <label className="block text-sm font-medium text-neutral-700 mb-2">Password</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" type="password" name="password" value={formData.password} onChange={handleChange} /><br /><br />
                 <label className="block text-sm font-medium text-neutral-700 mb-2">Role:</label>
-                <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" placeholder="admin / user" type="role" name="role" value={formData.role} onChange={handleChange} /><br /><br />
+                <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" placeholder="admin / user" type="text" name="role" value={formData.role} onChange={handleChange} /><br /><br />
                 <button type="submit" className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition">Submit</button>
             </form>
 
