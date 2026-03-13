@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBagIcon, ShoppingCartIcon, CubeTransparentIcon, CreditCardIcon, UserCircleIcon ,ChartBarIcon} from "@heroicons/react/24/solid";
+import { ShoppingBagIcon, ShoppingCartIcon, CubeTransparentIcon, CreditCardIcon, UserCircleIcon, ChartBarIcon } from "@heroicons/react/24/solid";
 import AnjayLogo from "../assets/Anjay_logo.png"
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ export default function HomePage() {
     const role = localStorage.getItem("role");
     console.log("Role:", role);
     const name = localStorage.getItem("name");
-    
+
     const navigate = useNavigate();
 
     return (
@@ -17,15 +17,33 @@ export default function HomePage() {
             <div className="bg-white p-10 rounded-3xl text-neutral-800 shadow-sm mb-10 border border-neutral-200">
                 <div className="flex items-center gap-3 mb-3">
                     {/* <a className="navbar-brand fs-2" href="#"> */}
-                    <img src={AnjayLogo} width="150" height="100"></img>
+                    <img src={AnjayLogo} alt="AnJayHub Logo" width="150" height="100" />
                     {/* </a> */}
 
                     <h1 className="text-4xl font-bold mb-2">Welcome to AnJayHub!</h1>
                     <div className="flex items-center gap-3">
-                        {name ? (
+                        {/* {name ? (
                             <div onClick={() => navigate("/Login")} className="flex items-center gap-2 bg-neutral-100 px-4 py-2 rounded-full">
                                 <UserCircleIcon className="w-6 h-6 text-neutral-700" />
                                 <span className="text-neutral-800 font-medium">{name}</span>
+                            </div>
+                        ) : ( */}
+                        {name ? (
+                            <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2 bg-neutral-100 px-4 py-2 rounded-full">
+                                    <UserCircleIcon className="w-6 h-6 text-neutral-700" />
+                                    <span className="text-neutral-800 font-medium">{name}</span>
+                                </div>
+
+                                <button
+                                    className="primary-btn"
+                                    onClick={() => {
+                                        localStorage.clear();
+                                        navigate("/login");
+                                    }}
+                                >
+                                    Logout
+                                </button>
                             </div>
                         ) : (
                             <div className="flex gap-3">
@@ -35,7 +53,7 @@ export default function HomePage() {
                                 >
                                     Login
                                 </Link>
-                               
+
                             </div>
                         )}
                     </div>
@@ -77,14 +95,14 @@ export default function HomePage() {
                         <button onClick={() => navigate("/payments")} className="primary-btn">Manage Payments</button>
                     </div>
                     {role === "admin" && (
-                    <div className="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:shadow-md transition">
-                        <div className="flex items-center gap-3 mb-3">
-                            <ChartBarIcon className="w-7 h-7 text-neutral-800" />
-                            <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Admin Dashboard</h2>
+                        <div className="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-3">
+                                <ChartBarIcon className="w-7 h-7 text-neutral-800" />
+                                <h2 className="text-2xl font-semibold mb-3 text-neutral-900">Admin Dashboard</h2>
+                            </div>
+                            <p className="text-neutral-500 mb-4">For Admin users only</p><br></br>
+                            <button onClick={() => navigate("/ProductDetailsList")} className="primary-btn">View</button>
                         </div>
-                        <p className="text-neutral-500 mb-4">For Admin users only</p><br></br>
-                        <button onClick={() => navigate("/ProductDetailsList")} className="primary-btn">View</button>
-                    </div>
                     )}
                 </div>
             </div>
