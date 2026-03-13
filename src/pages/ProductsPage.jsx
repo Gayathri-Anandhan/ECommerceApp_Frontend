@@ -17,6 +17,8 @@ export default function ProductsPage() {
     const [user, setUser] = useState(null);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const addToCart = (product) => {
 
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -35,17 +37,47 @@ export default function ProductsPage() {
         alert("Product added to cart");
     };
 
+    // useEffect(() => {
+    //     axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts")
+    //         .then(res => {
+    //             console.log(res.data);
+    //             setProducts(res.data);
+    //             setLoading(false);
+    //         })
+    //         .catch(err => {
+    //             console.error("Error loading products", err);
+    //             setLoading(false);
+    //         });
+    // }, []);
+
     useEffect(() => {
-        axios.get("https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts")
-            .then(res => {
-                console.log(res.data);
+
+        const fetchProducts = async () => {
+
+            try {
+
+                const res = await axios.get(
+                    "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/allproducts"
+                );
+
                 setProducts(res.data);
-                setLoading(false);
-            })
-            .catch(err => {
+                setMessage("Products loaded successfully");
+
+            } catch (err) {
+
                 console.error("Error loading products", err);
+                setErrorMessage("Failed to load products");
+
+            } finally {
+
                 setLoading(false);
-            });
+
+            }
+
+        };
+
+        fetchProducts();
+
     }, []);
 
     if (loading) {
@@ -60,6 +92,11 @@ export default function ProductsPage() {
                 </div>
                 <br></br>
                 <div className="grid md:grid-cols-2 gap-8">
+                    {message && <p className="text-green-600 mt-4">{message}</p>}
+                    {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
+                    {products.length === 0 && (
+                        <p className="text-gray-600">No products available.</p>
+                    )}
                     {products.map((product) => (
                         <div
                             key={product.id}
