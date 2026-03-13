@@ -63,6 +63,7 @@ export default function NewRegistration() {
             const response = await axios.post(url, formData);
 
             setMessage("Registration successful!");
+            alert("Registration successful!");
             setLoading(false);
 
             setTimeout(() => {
