@@ -83,7 +83,7 @@ export default function NewRegistration() {
     };
     return (
         <div className="bg-[#F5F1E8] p-15 rounded-3xl text-neutral-800 shadow-sm mb-10 border border-neutral-200">
-            {loading && <p className="text-blue-600">Submitting...</p>}
+            {loading && <p className="text-blue-600">Submitting...Kindly wait for sometime...</p>}
             {message && <p className="text-green-600">{message}</p>}
             {errorMessage && <p className="text-red-600">{errorMessage}</p>}
             {!isLogin && (
