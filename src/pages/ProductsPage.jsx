@@ -91,9 +91,10 @@ export default function ProductsPage() {
                 <div className="flex items-center gap-3 mb-3">
                 </div>
                 <br></br>
+                {message && <p className="text-green-600 mt-4">{message}</p>}
+                {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
                 <div className="grid md:grid-cols-2 gap-8">
-                    {message && <p className="text-green-600 mt-4">{message}</p>}
-                    {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
+
                     {products.length === 0 && (
                         <p className="text-gray-600">No products available.</p>
                     )}

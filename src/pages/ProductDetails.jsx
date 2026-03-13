@@ -12,11 +12,8 @@ export default function AddProduct() {
     });
     const [file, setFile] = useState(null);
     const { id } = useParams();
-
-    // Get id from query params
-    // const location = useLocation();
-    // const queryParams = new URLSearchParams(location.search);
-    // const id = queryParams.get("id"); // correct id
+    const [message, setMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,53 +24,112 @@ export default function AddProduct() {
         });
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     const formDataObj = new FormData();
+
+    //     const productObj = {
+    //         id: Number(id),
+    //         productName: formData.productName,
+    //         description: formData.description,
+    //         price: Number(formData.price)
+    //     };
+
+    //     if (id) {
+
+    //         // PUT API expects "product"
+    //         formDataObj.append(
+    //             "product",
+    //             JSON.stringify(productObj)
+    //         );
+
+    //         if (file) {
+    //             formDataObj.append("file", file);
+    //         }
+
+    //         await axios.put(
+    //             `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/updateProducts?id=${id}`,
+    //             formDataObj
+    //         );
+
+    //         alert("Product Updated Successfully");
+
+    //     } else {
+
+    //         // POST API expects "Product"
+    //         formDataObj.append(
+    //             "Product",
+    //             JSON.stringify(productObj)
+    //         );
+
+    //         formDataObj.append("file", file);
+
+    //         await axios.post(
+    //             `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/saveProduct`,
+    //             formDataObj
+    //         );
+
+    //         alert("Product Added Successfully");
+    //     }
+    // };
+
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        const formDataObj = new FormData();
+        try {
 
-        const productObj = {
-            id: Number(id),
-            productName: formData.productName,
-            description: formData.description,
-            price: Number(formData.price)
-        };
+            const formDataObj = new FormData();
 
-        if (id) {
+            const productObj = {
+                id: Number(id),
+                productName: formData.productName,
+                description: formData.description,
+                price: Number(formData.price)
+            };
 
-            // PUT API expects "product"
-            formDataObj.append(
-                "product",
-                JSON.stringify(productObj)
-            );
+            if (id) {
 
-            if (file) {
+                formDataObj.append(
+                    "product",
+                    JSON.stringify(productObj)
+                );
+
+                if (file) {
+                    formDataObj.append("file", file);
+                }
+
+                await axios.put(
+                    `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/updateProducts?id=${id}`,
+                    formDataObj
+                );
+
+                setMessage("Product Updated Successfully");
+
+            } else {
+
+                formDataObj.append(
+                    "Product",
+                    JSON.stringify(productObj)
+                );
+
                 formDataObj.append("file", file);
+
+                await axios.post(
+                    `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/saveProduct`,
+                    formDataObj
+                );
+
+                setMessage("Product Added Successfully");
+
             }
 
-            await axios.put(
-                `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/updateProducts?id=${id}`,
-                formDataObj
-            );
+        } catch (error) {
 
-            alert("Product Updated Successfully");
+            console.error(error);
+            setErrorMessage("Failed to save product");
 
-        } else {
-
-            // POST API expects "Product"
-            formDataObj.append(
-                "Product",
-                JSON.stringify(productObj)
-            );
-
-            formDataObj.append("file", file);
-
-            await axios.post(
-                `https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/products/saveProduct`,
-                formDataObj
-            );
-
-            alert("Product Added Successfully");
         }
     };
 
@@ -90,7 +146,10 @@ export default function AddProduct() {
                         imageUrl: res.data.imageUrl || "",
                     });
                 })
-                .catch(err => console.log("Error fetching product", err));
+                .catch(err => {
+                    console.error("Error fetching product", err);
+                    setErrorMessage("Failed to load product details");
+                });
         }
     }, [id]);
 
@@ -141,6 +200,8 @@ export default function AddProduct() {
 
                 </div>
                 <button className="primary-btn" type="submit">Submit</button>
+                {message && <p className="text-green-600 mt-3">{message}</p>}
+                {errorMessage && <p className="text-red-600 mt-3">{errorMessage}</p>}
             </div>
         </form>
     );
