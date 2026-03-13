@@ -47,7 +47,7 @@ export default function NewRegistration() {
 
             setTimeout(() => {
                 navigate("/login");
-            }, 2000);
+            }, 3000);
 
         } catch (error) {
 
@@ -67,7 +67,7 @@ export default function NewRegistration() {
 
             <form className="container my-8" align="center" onSubmit={handleSubmit}>
                 <h2 className="text-4xl font-bold mb-2">NEW REGISTRATION</h2>
-
+                <h4 className="text-gray-500 mb-4">Create a new account to continue</h4>
                 {/* Status messages */}
                 {loading && <p className="text-blue-600 mb-2">Submitting... please wait</p>}
                 {message && <p className="text-green-600 mb-2">{message}</p>}

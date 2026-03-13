@@ -29,6 +29,10 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.username || !formData.password) {
+            setErrorMessage("Please enter username and password");
+            return;
+        }
 
         setLoading(true);
         setMessage("");
@@ -53,8 +57,17 @@ export default function Login() {
             }, 1000);
 
         } catch (error) {
-            console.error("Login error:", error);
-            setErrorMessage("Login failed! Please check username/password.");
+
+            if (error.response) {
+                setErrorMessage(error.response.data.message || "Invalid username or password");
+            } else if (error.request) {
+                setErrorMessage("Server not reachable. Please try again later.");
+            } else {
+                setErrorMessage("Unexpected error occurred.");
+            }
+
+        } finally {
+            setLoading(false);
         }
 
         setLoading(false);

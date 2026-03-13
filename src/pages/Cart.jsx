@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 export default function Cart() {
 
     const [cartItems, setCartItems] = useState([]);
-
+    const [message, setMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         console.log("Cart Items:", cart);
@@ -16,27 +17,42 @@ export default function Cart() {
 
     const handleCheckout = () => {
 
-        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-        const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+        try {
 
-        const newOrders = [...orders, ...cart];
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const orders = JSON.parse(localStorage.getItem("orders") || "[]");
 
-        localStorage.setItem("orders", JSON.stringify(newOrders));
+            if (cart.length === 0) {
+                setErrorMessage("Cart is empty.");
+                return;
+            }
 
-        localStorage.removeItem("cart");
+            const newOrders = [...orders, ...cart];
 
-        setCartItems([]); // update UI
+            localStorage.setItem("orders", JSON.stringify(newOrders));
 
-        alert("Order placed!");
+            localStorage.removeItem("cart");
 
-        window.location.href = "/Orders";
+            setCartItems([]);
+            setMessage("Order placed successfully!");
+
+            setTimeout(() => {
+                window.location.href = "/Orders";
+            }, 1000);
+
+        } catch (error) {
+            console.error(error);
+            setErrorMessage("Something went wrong during checkout.");
+        }
     };
 
-    
     return (
-        
+
         <div>
             <h2>My Cart</h2>
+            {cartItems.length === 0 && (
+                <p className="text-gray-600">Your cart is empty.</p>
+            )}
 
             {cartItems.map((item, index) => (
                 <div
@@ -60,7 +76,9 @@ export default function Cart() {
             <button className="primary-btn" onClick={handleCheckout}>
                 Checkout
             </button>
-            
+            {message && <p className="text-green-600 mt-2">{message}</p>}
+            {errorMessage && <p className="text-red-600 mt-2">{errorMessage}</p>}
+
         </div>
     );
 }

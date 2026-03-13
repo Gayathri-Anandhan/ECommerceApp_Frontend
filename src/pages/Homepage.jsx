@@ -8,10 +8,7 @@ export default function HomePage() {
     const role = localStorage.getItem("role");
     console.log("Role:", role);
     const name = localStorage.getItem("name");
-    const [user, setUser] = useState(null);
-    const handleLogin = () => {
-        setUser("John");
-    };
+    
     const navigate = useNavigate();
 
     return (
