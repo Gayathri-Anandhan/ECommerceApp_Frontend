@@ -5,40 +5,33 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 export default function Login() {
     const location = useLocation();
     const { id } = useParams();
-
+    // const modeFromState = location.state?.mode;
     const [isLogin, setIsLogin] = useState(true);
-
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
-
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-
     const navigate = useNavigate();
     const from = location.state?.from?.pathname;
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
+    // const [isSignup, setIsSignup] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        setLoading(true);
-        setMessage("");
-        setErrorMessage("");
-
         try {
-            const url = "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/auth/sign-in";
+            const url = "https://ecommerceapp-backend-ylw0.onrender.com/ECommerce/api/auth/sign-in"
 
             const response = await axios.post(url, formData);
-
             console.log(response.data);
 
             // store values in localStorage
@@ -46,18 +39,11 @@ export default function Login() {
             localStorage.setItem("role", response.data.role);
             localStorage.setItem("token", response.data.token);
 
-            setMessage("Login successful!");
-
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
-
+            navigate("/")
         } catch (error) {
             console.error("Login error:", error);
-            setErrorMessage("Login failed! Please check username/password.");
+            alert("Operation failed! Check console for details.");
         }
-
-        setLoading(false);
     };
 
     return (
@@ -69,52 +55,21 @@ export default function Login() {
                     </button>
                 </div>
             )}
-
             <form className="container my-8" align="center" onSubmit={handleSubmit}>
                 <h2 className="text-4xl font-bold mb-2">LOGIN</h2>
 
                 <label className="Block text-sm font-medium text-neutral-700 mb-2">Username</label>
-                <input
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white"
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                /><br /><br />
+                <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" type="text" name="username" value={formData.username} onChange={handleChange} /><br /><br />
 
                 <label className="block text-sm font-medium text-neutral-700 mb-2">Password</label>
-                <input
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white"
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                /><br /><br />
+                <input className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-gray focus:ring-2 focus:ring-neutral-800 focus:border-neutral-800 transition bg-white" type="password" name="password" value={formData.password} onChange={handleChange} /><br /><br />
 
-                {/* BUTTON */}
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
-                >
-                    {loading ? "Processing..." : "Submit"}
-                </button>
-
-                {/* MESSAGES */}
-                {loading && <p className="text-blue-600 mt-2">Processing...</p>}
-                {message && <p className="text-green-600 mt-2">{message}</p>}
-                {errorMessage && <p className="text-red-600 mt-2">{errorMessage}</p>}
-
+                <button type="submit" className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition">Submit</button>
             </form>
 
             <div className="text-center mt-2">
-                <button
-                    type="button"
-                    className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
-                    onClick={() => navigate("/NewRegistration")}
-                >
-                    New Registration
-                </button>
+                <button type="button" className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition" onClick={() => navigate("/NewRegistration")}>New Registration</button>
+
             </div>
         </div>
     );
