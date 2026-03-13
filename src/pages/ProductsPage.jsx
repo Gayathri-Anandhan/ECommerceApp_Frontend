@@ -77,7 +77,7 @@ export default function ProductsPage() {
 
                             <button
                                 onClick={() => addToCart(product)}
-                                className="flex items-center bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
+                                className="primary-btn"
                             >
                                 <ShoppingCartIcon className="w-7 h-7 text-neutral-800" />
                                 Add to Cart

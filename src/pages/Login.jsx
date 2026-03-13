@@ -95,7 +95,7 @@ export default function Login() {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
+                    className="primary-btn"
                 >
                     {loading ? "Processing..." : "Submit"}
                 </button>
@@ -110,7 +110,7 @@ export default function Login() {
             <div className="text-center mt-2">
                 <button
                     type="button"
-                    className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition"
+                    className="primary-btn"
                     onClick={() => navigate("/NewRegistration")}
                 >
                     New Registration

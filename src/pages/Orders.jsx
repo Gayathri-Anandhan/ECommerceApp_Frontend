@@ -66,14 +66,14 @@ export default function Orders() {
                         {item.status === "PAID" ? (
                             <button
                                 disabled
-                                className="bg-green-500 text-white px-4 py-2 rounded"
+                                className="primary-btn"
                             >
                                 Paid
                             </button>
                         ) : (
                             <button
                                 onClick={() => handlePayment(item, index)}
-                                className="bg-black text-white px-4 py-2 rounded"
+                                className="primary-btn"
                             >
                                 Pay Now
                             </button>

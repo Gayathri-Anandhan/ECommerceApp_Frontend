@@ -34,8 +34,7 @@ export default function Cart() {
 
     
     return (
-        // <div className="flex items-center gap-6 border p-4 rounded-lg shadow-sm mb-4 bg-white">
-        // <div className="p-10 bg-gray-100 min-h-screen">
+        
         <div>
             <h2>My Cart</h2>
 
@@ -58,7 +57,7 @@ export default function Cart() {
 
             ))}
             <h2>Total: {totalPrice}</h2>
-            <button className="bg-neutral-900 text-white px-4 py-2 rounded-lg hover:bg-neutral-800 transition" onClick={handleCheckout}>
+            <button className="primary-btn" onClick={handleCheckout}>
                 Checkout
             </button>
             

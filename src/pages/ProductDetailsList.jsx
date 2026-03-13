@@ -55,7 +55,7 @@ export default function Dashboard() {
             {/* <div className="bg-[#F5F1E8] p-15 rounded-3xl text-neutral-800 shadow-sm mb-10 border border-neutral-200"> */}
 
                 <h2 className="text-4xl font-bold mb-2">Admin DashBoard</h2><br></br>
-                <button className="items-center bg-[#F5F1E8] text-white px-4 py-2 rounded-lg hover:bg-[#F5F1E8]-800 transition float-end" onClick={() => navigate("/ProductDetails")}><PlusIcon className="w-6 h-6"></PlusIcon>Add New Product</button><br></br>
+                <button className="primary-btn" onClick={() => navigate("/ProductDetails")}><PlusIcon className="w-6 h-6"></PlusIcon>Add New Product</button><br></br>
                 <br></br><br></br>
                 <div className="bg-white p-10 rounded-3xl text-neutral-800 shadow-sm mb-10 border border-neutral-200">
                     <div className="row mb-3">
@@ -82,7 +82,7 @@ export default function Dashboard() {
                             />
                        
                             <button
-                                className="items-center bg-[#F5F1E8] text-white px-4 py-2 rounded-lg hover:bg-[#F5F1E8]-800 transition"
+                                className="primary-btn"
                                 onClick={() => setFilters({ minPrice: "", maxPrice: "" })}
                             >
                                 Reset
